@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flexbox Quest</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            background-image:linear-gradient(rgba(0, 0, 0, 0.35),rgba(0, 0, 0, 0.35)),url("https://t3.ftcdn.net/jpg/05/99/72/06/360_F_599720625_N2U8AQzhS5y7llrp2AMAQmKL4B6nWHKT.jpg");
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 22px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+        }
+
+        .stat {
+            background: #222;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .heart {
+            color: red;
+        }
+
+        .coin {
+            color: gold;
+        }
+
+        .level {
+            color: lightblue;
+        }
+
+        .health {
+            width: 220px;
+            margin: 20px 0 0 20px;
+        }
+
+        .health-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .health-bar {
+            width: 100%;
+            height: 15px;
+            background: #333;
+            border: 1px solid white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .health-fill {
+            width: 82%;
+            height: 100%;
+            background: #e63946;
+        }
+
+        .game-area {
+            height: 350px;
+            position: relative;
+        }
+
+        .star {
+            position: absolute;
+            left: 45%;
+            bottom: 180px;
+            font-size: 35px;
+        }
+
+        .panel {
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid #777;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .panel h2 {
+            color: gold;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .controls {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            width: 180px;
+        }
+
+        .keys {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .key {
+            width: 40px;
+            height: 40px;
+            background: #555;
+            border: 1px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+
+        .jump {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            background: #76582d;
+            color: white;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+        .inventory {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .items {
+            display: flex;
+            gap: 8px;
+        }
+
+        .item {
+            width: 55px;
+            height: 55px;
+            background: #333;
+            border: 2px solid #777;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .quest {
+            position: absolute;
+            top: 110px;
+            right: 20px;
+            width: 260px;
+        }
+
+        .quest-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #555;
+            font-size: 13px;
+        }
+
+        .quest-item:last-child {
+            border-bottom: none;
+        }
+
+        .progress {
+            color: #6ee6a0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        @media (max-width: 700px) {
+
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .quest {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 10px;
+                width: auto;
+            }
+
+            .inventory {
+                position: relative;
+                left: auto;
+                bottom: auto;
+                transform: none;
+                width: fit-content;
+                margin: 10px auto;
+            }
+
+            .controls {
+                position: relative;
+
+                left: auto;
+                bottom: auto;
+                margin: 10px;
+            }
+
+            .game-area {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>⚔ Flexbox Quest</h1>
+        <div class="stats">
+            <div class="stat">
+                <span class="heart">♥</span> 5
+            </div>
+            <div class="stat">
+                <span class="coin">●</span> 1000
+            </div>
+            <div class="stat">
+                <span class="level">LV</span> 1
+            </div>
+        </div>
+    </header>
+    <div class="health">
+        <div class="health-text">
+            <span>HEALTH</span>
+            <span>82 / 100</span>
+        </div>
+        <div class="health-bar">
+            <div class="health-fill"></div>
+        </div>
+    </div>
+    <main class="game-area">
+        <div class="star">
+            ⭐
+        </div>
+    </main>
+    <section class="panel controls">
+        <h2>Controls</h2>
+        <div class="keys">
+            <div class="key">↑</div>
+            <div class="key">←</div>
+            <div class="key">↓</div>
+            <div class="key">→</div>
+        </div>
+        <button class="jump">
+            SPACE · JUMP
+        </button>
+    </section>
+    <section class="panel inventory">
+        <h2>Inventory</h2>
+        <div class="items">
+            <div class="item">⚔️</div>
+            <div class="item">🛡️</div>
+            <div class="item">🧪</div>
+            <div class="item">🗝️</div>
+        </div>
+    </section>
+    <section class="panel quest">
+        <h2>Quest Log</h2>
+        <div class="quest-item">
+            <span>⭐ Collect Stars</span>
+            <span class="progress">1 / 3</span>
+        </div>
+        <div class="quest-item">
+            <span>🗝 Find Golden Key</span>
+            <span class="progress">0 / 1</span>
+        </div>
+        <div class="quest-item">
+            <span>👹 Defeat Monster</span>
+            <span class="progress">0 / 1</span>
+        </div>
+    </section>
+    <footer>
+        Flexbox Quest © 2026
+    </footer>
+</body>
+</html>
